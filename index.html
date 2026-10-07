@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="contents">
+        <div class="title">
+          <h1>To-Do List</h1>
+        </div>
+        <div class="task-status">
+          <!-- Completed Status -->
+          <div class="status-card">
+            <!-- Icon Centang / Logo di Kiri -->
+            <div class="status-icon">
+              <i class="bi bi-check-circle-fill"></i>
+            </div>
+
+            <!-- Konten Teks di Kanan -->
+            <div class="status-content">
+              <span class="status-title">Tasks Completed</span>
+              <span class="status-count" id="completed-count">0</span>
+            </div>
+          </div>
+
+          <!-- Pending Status -->
+          <div class="status-card">
+            <!-- Icon Centang / Logo di Kiri -->
+            <div
+              class="status-icon"
+              style="--bg-color: #f4fcdc; --icon-color: #9ea316"
+            >
+              <i class="bi bi-clock-fill"></i>
+            </div>
+
+            <!-- Konten Teks di Kanan -->
+            <div class="status-content">
+              <span class="status-title">Tasks Pending</span>
+              <span class="status-count" id="pending-count">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="task-lists">
+          <span class="task-list" id="task-lists"> </span>
+        </div>
+
+        <!-- Form Input -->
+        <div class="task-input">
+          <!-- Bungkus dengan tag <form> -->
+          <form id="task-form" class="task-input">
+            <input
+              class="form-control"
+              type="text"
+              id="task-input"
+              placeholder="Add a new task..."
+              required
+              oninvalid="this.setCustomValidity('Please enter a task.')"
+              oninput="this.setCustomValidity('')"
+            />
+            <button type="submit" id="add-task-btn">
+              <i class="bi bi-plus-circle-fill"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-list-container">
+          <ul id="task-list">
+            <!-- Daftar akan diisi oleh JavaScript -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
