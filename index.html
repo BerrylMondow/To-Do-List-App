@@ -49,7 +49,7 @@
         </div>
 
         <!-- Form Input -->
-        <div class="task-input">
+        <div class="form-container">
           <!-- Bungkus dengan tag <form> -->
           <form id="task-form" class="task-input">
             <input
@@ -58,7 +58,7 @@
               id="task-input"
               placeholder="Add a new task..."
               required
-              oninvalid="this.setCustomValidity('Please enter a task.')"
+              oninvalid="this.setCustomValidity('Form Tidak Boleh Kosong !')"
               oninput="this.setCustomValidity('')"
             />
             <button type="submit" id="add-task-btn">

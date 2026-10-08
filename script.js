@@ -1,7 +1,5 @@
 // Panggil semua elemen yang diperlukan dari DOM
-
 const taskInput = document.getElementById("task-input");
-const addTaskBtn = document.getElementById("add-task-btn");
 const taskList = document.getElementById("task-list");
 const completedCountEl = document.getElementById("completed-count");
 const pendingCountEl = document.getElementById("pending-count");
@@ -20,13 +18,11 @@ function updateStatusCount() {
 // Fungsi untuk membuat elemen HTML task-actions berdasarkan status completed
 function renderTaskActions(isCompleted) {
   if (isCompleted) {
-    // Jika selesai: Hanya tampilkan ikon centang hijau
     return `<i class="bi bi-check-circle-fill" style="color: #10b981; font-size: 1.2rem;"></i>`;
   }
-  // Jika belum selesai: Tampilkan tombol complete dan delete
   return `
-    <button class="complete-btn"><i class="bi bi-check-circle-fill"></i></button>
-    <button class="delete-btn"><i class="bi bi-trash-fill"></i></button>
+    <button class="complete-btn" type="button"><i class="bi bi-check-circle-fill"></i></button>
+    <button class="delete-btn" type="button"><i class="bi bi-trash-fill"></i></button>
   `;
 }
 
@@ -45,10 +41,20 @@ function addTask() {
     `;
 
     taskList.appendChild(taskItem);
+    
+    // Reset nilai input dan bersihkan status validasi
     taskInput.value = "";
+    taskInput.setCustomValidity("");
+
     updateStatusCount();
   }
 }
+
+// Tangani penambahan tugas HANYA lewat submit form
+taskForm.addEventListener("submit", function (event) {
+  event.preventDefault(); 
+  addTask();
+});
 
 // Event Delegation untuk menangani aksi pada task list
 taskList.addEventListener("click", function (event) {
@@ -68,21 +74,10 @@ taskList.addEventListener("click", function (event) {
   if (target.closest(".complete-btn")) {
     taskItem.classList.add("completed");
     
-    // Ganti area tombol dengan ikon centang hijau saja
     const actionsContainer = taskItem.querySelector(".task-actions");
     actionsContainer.innerHTML = renderTaskActions(true);
 
     updateStatusCount();
-  }
-});
-
-// Event listener untuk tombol "Add Task"
-addTaskBtn.addEventListener("click", addTask);
-
-// Event listener untuk menambahkan tugas saat menekan tombol Enter
-taskInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    addTask();
   }
 });
 
